@@ -1,0 +1,75 @@
+<!--
+  Angular 17+ control flow: @if / @for (no *ngIf/*ngFor). The component exposes
+  signals; calling them like functions (entries()) reads their current value.
+-->
+<main class="wrap">
+  <header class="hero">
+    <h1>🍫 The Office Snack Tab</h1>
+    <p class="tagline">Track who bought what from the shared snack stash.</p>
+  </header>
+
+  @if (error(); as msg) {
+    <div class="banner error" role="alert">{{ msg }}</div>
+  }
+
+  <section class="grid">
+    <!-- LEFT: add + list -->
+    <div class="col">
+      <div class="card">
+        <h2>Add to the tab</h2>
+        <form class="add-form" (submit)="$event.preventDefault(); addSnack()">
+          <input name="who" [(ngModel)]="who" placeholder="Who?" aria-label="Who" />
+          <input name="item" [(ngModel)]="item" placeholder="What snack?" aria-label="Item" />
+          <input name="amount" [(ngModel)]="amount" placeholder="$" inputmode="decimal" aria-label="Amount" class="amount" />
+          <button type="submit">Add it</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>The tab <span class="muted">(newest first)</span></h2>
+        @if (loading()) {
+          <p class="muted">Loading the tab…</p>
+        } @else if (entries().length === 0) {
+          <p class="muted">Nothing on the tab yet.</p>
+        } @else {
+          <ul class="tab-list">
+            @for (e of entries(); track e.id) {
+              <li>
+                <div class="tab-main">
+                  <span class="who">{{ e.who }}</span>
+                  <span class="item">{{ e.item }}</span>
+                </div>
+                <div class="tab-right">
+                  <span class="amount-pill">{{ money(e.amount) }}</span>
+                  <button class="settle" (click)="settle(e)" title="Mark as paid">settle</button>
+                </div>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+
+    <!-- RIGHT: per-person summary -->
+    <div class="col">
+      <div class="card summary">
+        <h2>🧾 Who Owes What</h2>
+        @if (summary(); as s) {
+          <p class="grand">Grand total: <strong>{{ money(s.grandTotal) }}</strong></p>
+          <p class="note">{{ s.note }}</p>
+          <ol class="summary-list">
+            @for (row of s.totals; track row.who) {
+              <li>
+                <span class="rank-who">{{ row.who }}</span>
+                <span class="owed">{{ money(row.owed) }}</span>
+              </li>
+            }
+          </ol>
+        } @else {
+          <p class="muted">Adding it up…</p>
+        }
+      </div>
+      <p class="disclaimer">A demo app for the AI-Native Engineering training. No real money changes hands.</p>
+    </div>
+  </section>
+</main>

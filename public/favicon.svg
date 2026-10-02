@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- The Office Snack Tab — a little chocolate bar. -->
+  <rect width="32" height="32" rx="7" fill="#3a2416"/>
+  <g transform="translate(6 5)">
+    <rect x="0" y="0" width="20" height="22" rx="3" fill="#7b4a24"/>
+    <rect x="0" y="0" width="20" height="22" rx="3" fill="none" stroke="#5c3618" stroke-width="1.5"/>
+    <!-- grid of squares -->
+    <g fill="#8f5a2e" stroke="#5c3618" stroke-width="1">
+      <rect x="2.5" y="2.5" width="6.5" height="7.5" rx="1"/>
+      <rect x="11" y="2.5" width="6.5" height="7.5" rx="1"/>
+      <rect x="2.5" y="12" width="6.5" height="7.5" rx="1"/>
+      <rect x="11" y="12" width="6.5" height="7.5" rx="1"/>
+    </g>
+    <!-- highlight -->
+    <rect x="2.5" y="2.5" width="6.5" height="3" rx="1" fill="#a86e3e"/>
+    <rect x="11" y="2.5" width="6.5" height="3" rx="1" fill="#a86e3e"/>
+  </g>
+</svg>

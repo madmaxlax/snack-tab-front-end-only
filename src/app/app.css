@@ -1,0 +1,105 @@
+/* Scoped to <app-root>. Deliberately hand-written (no UI library) so the class
+   can read every rule. Dark, cozy "break room at 3pm" vibe. */
+
+:host {
+  --bg: #14110f;
+  --card: #201b17;
+  --line: #33291f;
+  --text: #f3ece2;
+  --muted: #a1968a;
+  --accent: #e0a458;
+  --danger: #d9705f;
+  display: block;
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 70% -10%, #2a2018 0%, var(--bg) 60%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+.hero { text-align: center; margin-bottom: 1.75rem; }
+.hero h1 { font-size: 2.2rem; margin: 0 0 .25rem; }
+.tagline { color: var(--muted); margin: 0; }
+
+.banner { padding: .75rem 1rem; border-radius: 10px; margin-bottom: 1.25rem; }
+.banner.error { background: #3a1f1a; border: 1px solid var(--danger); color: #f6c9c0; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+
+.col { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+}
+.card h2 { margin: 0 0 .9rem; font-size: 1.1rem; }
+.muted { color: var(--muted); font-weight: 400; font-size: .85rem; }
+
+.add-form { display: flex; gap: .5rem; flex-wrap: wrap; }
+.add-form input {
+  flex: 1 1 120px;
+  min-width: 0;
+  padding: .55rem .7rem;
+  background: #171310;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+}
+.add-form input.amount { flex: 0 0 84px; }
+.add-form input::placeholder { color: #6f6459; }
+.add-form button {
+  flex: 0 0 auto;
+  padding: .55rem 1rem;
+  background: var(--accent);
+  color: #201400;
+  font-weight: 700;
+  border: 0; border-radius: 8px; cursor: pointer;
+}
+.add-form button:hover { filter: brightness(1.08); }
+
+.tab-list, .summary-list { list-style: none; margin: 0; padding: 0; }
+.tab-list li {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .75rem; padding: .6rem 0; border-bottom: 1px solid var(--line);
+}
+.tab-list li:last-child { border-bottom: 0; }
+.tab-main { display: flex; flex-direction: column; }
+.who { font-weight: 600; }
+.item { color: var(--muted); font-size: .88rem; }
+.tab-right { display: flex; align-items: center; gap: .6rem; }
+.amount-pill {
+  background: #2c2419; border: 1px solid var(--line);
+  padding: .2rem .55rem; border-radius: 999px; font-variant-numeric: tabular-nums;
+}
+.settle {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 8px;
+  padding: .25rem .55rem; font-size: .78rem; cursor: pointer;
+}
+.settle:hover { color: var(--text); border-color: var(--accent); }
+
+.summary { background: linear-gradient(180deg, #241a12, var(--card)); }
+.grand { margin: 0 0 .25rem; }
+.grand strong { color: var(--accent); }
+.note { margin: 0 0 .9rem; color: var(--muted); font-style: italic; }
+.summary-list { counter-reset: rank; }
+.summary-list li {
+  counter-increment: rank;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .5rem 0; border-bottom: 1px solid var(--line);
+}
+.summary-list li:last-child { border-bottom: 0; }
+.summary-list li::before {
+  content: counter(rank);
+  display: inline-grid; place-items: center;
+  width: 1.5rem; height: 1.5rem; margin-right: .6rem;
+  background: #2c2419; border-radius: 50%; font-size: .8rem; color: var(--accent);
+}
+.rank-who { flex: 1; }
+.owed { font-variant-numeric: tabular-nums; }
+
+.disclaimer { color: #6f6459; font-size: .74rem; text-align: center; margin: 0; }
